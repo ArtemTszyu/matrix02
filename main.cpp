@@ -84,7 +84,7 @@ void sub(int ** mat1, int ** mat2, int str, int col)
 	}
 }
 
-void mul(int ** mat1, int ** mat2, int str, int col)
+void mul(int ** mat1, int ** mat2, int str, int col,int col1)
 {
 	int ** mat3 = new int*[str];
 	for (int i = 0; i < str; i++)
@@ -95,7 +95,7 @@ void mul(int ** mat1, int ** mat2, int str, int col)
 		cout << endl;
 		for (int j = 0; j < col; j++) {
 			int res = 0;
-			for (int k = 0; k < str; k++) {
+			for (int k = 0; k < col1; k++) {
 				res += mat1[i][k] * mat2[k][j];
 			}
 
@@ -292,7 +292,11 @@ int main()
 			{
 				mat2 = true;
 			}
-			else cout << "fail input";
+			else
+			{
+				cout << "fail input";
+				return 0;
+			}
 		}
 		switch (op)
 		{
@@ -319,9 +323,9 @@ int main()
 			}
 			break;
 		case '*':
-			if (str1 == col2)
+			if (col1 == str2)
 			{
-				mul(matrix1, matrix2, str1, col2);
+				mul(matrix1, matrix2, str1, col2,col1);
 			}
 			else
 			{

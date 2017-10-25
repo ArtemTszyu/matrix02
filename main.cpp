@@ -25,6 +25,7 @@ bool raz(int &m , int &n)
 	}
 	else 
 	{
+		cout << "fail!!";
 		return false;
 	}
 }

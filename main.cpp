@@ -166,15 +166,21 @@ int det(int ** mat, int N)
 		n_mat[i] = new int[N];
 	}
 
-	if (N < 1) cout << "fail";
+	if (N < 1)
+	{
+		delete n_mat;
+		cout << "fail";
+	}
 	if (N == 1)
 	{
 		deter = mat[0][0];
+		delete n_mat;
 		return(deter);
 	}
 	if (N == 2)
 	{
 		deter = mat[0][0] * mat[1][1] - (mat[1][0] * mat[0][1]);
+		delete n_mat;
 		return(deter);
 	}
 	if (N>2)
@@ -186,6 +192,7 @@ int det(int ** mat, int N)
 			step = -step;
 		}
 	}
+	delete n_mat;
 	return(deter);
 }
 
@@ -224,6 +231,8 @@ void R(double ** matR , int ** matrix1 , int str1 ,int col1)
 		}
 	}
 	else cout << "fail R , det = 0";
+	delete n_mat;
+	delete mat;
 }
 
 int main()
@@ -307,6 +316,7 @@ int main()
 		 mat3 = new int*[col1];
 		 T(mat3, matrix1, col1, str1);
 		print(mat3, col1, str1);
+		delete mat3;
 
 	}
 	else if (op == 'R')
@@ -314,7 +324,10 @@ int main()
 		double ** matR; 
 		matR = new double*[str1];
 		R(matR, matrix1, str1, col1);
+		delete matR;
 	}
 	cin.get();
+	delete matrix1;
+	delete matrix2;
 	return 0;
 }

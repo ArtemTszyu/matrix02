@@ -16,8 +16,12 @@ bool raz(int &m , int &n)
 	{
 		m =*t;
 		delete t;
-		stream >> n;
-		return true;
+		if (!(stream >> n))
+		{
+			cout << "fail!!!";
+			return false;
+		}
+		else return true;
 	}
 	else 
 	{
@@ -256,7 +260,7 @@ int main()
 	int str1, col1;
 	int str2, col2;
 	static int **matrix1;
-	static bool mat2=false;
+	static bool mat1=false ,mat2=false;
 	static int **matrix2;
 	static char op;
 	if (raz(str1, col1))
@@ -268,6 +272,7 @@ int main()
 		}
 		if (read(matrix1, str1, col1))
 		{
+			mat1 = true;
 			//cout << "op  " << endl ;
 			cin >> op;
 			cin.get();
@@ -350,9 +355,12 @@ int main()
 		}
 	}
 	cin.get();
-	for (int i = 0; i < str1; i++)
+	if (mat1)
 	{
-		delete[] matrix1[i];
+		for (int i = 0; i < str1; i++)
+		{
+			delete[] matrix1[i];
+		}
 	}
 	if (mat2)
 	{

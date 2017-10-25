@@ -168,19 +168,25 @@ int det(int ** mat, int N)
 
 	if (N < 1)
 	{
-		delete n_mat;
+		for (int i = 0; i < N; i++)
+		{
+			delete[] n_mat[i];
+		}
 		cout << "fail";
 	}
 	if (N == 1)
 	{
 		deter = mat[0][0];
-		delete n_mat;
+		
 		return(deter);
 	}
 	if (N == 2)
 	{
 		deter = mat[0][0] * mat[1][1] - (mat[1][0] * mat[0][1]);
-		delete n_mat;
+		for (int i = 0; i < N; i++)
+		{
+			delete[] n_mat[i];
+		}
 		return(deter);
 	}
 	if (N>2)
@@ -192,11 +198,14 @@ int det(int ** mat, int N)
 			step = -step;
 		}
 	}
-	delete n_mat;
+	for (int i = 0; i < N; i++)
+	{
+		delete[] n_mat[i];
+	}
 	return(deter);
 }
 
-void R(double ** matR , int ** matrix1 , int str1 ,int col1)
+void R(double ** matR, int ** matrix1, int str1, int col1)
 {
 	int **n_mat;
 	double ** mat;
@@ -231,8 +240,15 @@ void R(double ** matR , int ** matrix1 , int str1 ,int col1)
 		}
 	}
 	else cout << "fail R , det = 0";
-	delete n_mat;
-	delete mat;
+
+	for (int i= 0 ; i < str1 ; i++)
+	{
+		delete [] n_mat[i];
+	}
+	for (int i = 0; i < str1; i++)
+	{
+		delete[] mat[i];
+	}
 }
 
 int main()
@@ -240,6 +256,7 @@ int main()
 	int str1, col1;
 	int str2, col2;
 	static int **matrix1;
+	static bool mat2=false;
 	static int **matrix2;
 	static char op;
 	if (raz(str1, col1))
@@ -268,7 +285,7 @@ int main()
 			}
 			if (read(matrix2, str2, col2))
 			{
-
+				mat2 = true;
 			}
 			else cout << "fail input";
 		}
@@ -316,7 +333,10 @@ int main()
 		 mat3 = new int*[col1];
 		 T(mat3, matrix1, col1, str1);
 		print(mat3, col1, str1);
-		delete mat3;
+		for (int i = 0; i < col1; i++)
+		{
+			delete[] mat3[i];
+		}
 
 	}
 	else if (op == 'R')
@@ -324,10 +344,22 @@ int main()
 		double ** matR; 
 		matR = new double*[str1];
 		R(matR, matrix1, str1, col1);
-		delete matR;
+		for (int i = 0; i < str1; i++)
+		{
+			delete[] matR[i];
+		}
 	}
 	cin.get();
-	delete matrix1;
-	delete matrix2;
+	for (int i = 0; i < str1; i++)
+	{
+		delete[] matrix1[i];
+	}
+	if (mat2)
+	{
+		for (int i = 0; i < str2; i++)
+		{
+			delete[] matrix2[i];
+		}
+	}
 	return 0;
 }

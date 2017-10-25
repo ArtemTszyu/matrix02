@@ -39,8 +39,6 @@ bool read(int **matrix , int str , int col )
 		istringstream stream(row);
 		for (int j=0; j < col; j++)
 		{
-		//	cout << "cicl";
-			
 			if (stream >> matrix[i][j]) { k++; }
 		}
 	}

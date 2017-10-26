@@ -243,14 +243,16 @@ void R(double ** matR, int ** matrix1, int str1, int col1)
 		}
 	}
 	else cout << "fail R , det = 0";
-
-	for (int i= 0 ; i < str1 ; i++)
+	if (deter != 0)
 	{
-		delete [] n_mat[i];
-	}
-	for (int i = 0; i < str1; i++)
-	{
-		delete[] mat[i];
+		for (int i = 0; i < str1; i++)
+		{
+			delete[] n_mat[i];
+		}
+		for (int i = 0; i < str1; i++)
+		{
+			delete[] mat[i];
+		}
 	}
 }
 

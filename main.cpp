@@ -237,7 +237,7 @@ void R(double ** matR, int ** matrix1, int str1, int col1)
 			cout << endl;
 			for (int j = 0; j < str1; ++j)
 			{
-				cout << matR[i][j] << " ";
+				cout << mat[i][j] << " ";
 			}
 
 		}
